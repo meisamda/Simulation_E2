@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="T2.css">
+        <title>Simulation_E2</title>
+        <style>
+            table{
+                float:left;
+            }
+
+            table ,th ,td{
+
+                border-bottom:1px solid rgb(190, 189, 189);
+                border-left:1px solid rgb(194, 192, 192);
+                border-collapse: collapse;
+                text-align:center;
+            }
+
+
+            th,td{
+                padding:3px;
+            }
+
+            button{
+                height:60px;
+                width:90px;
+                color:white;
+                border:0px;
+                margin-left:47%;
+                font-weight:bold;
+                font-size:18px;
+                background: linear-gradient(30deg,rgba(183,222,237,1) ,#0FB2EE 25%, #0EAAEC 45%, rgba(183,222,237,1) 100%);
+            }
+
+
+            button:hover{
+                background: linear-gradient(30deg,rgb(153, 226, 255) ,rgb(220, 246, 255) 25%, rgb(89, 205, 255) 45%, rgb(0, 140, 195) 100%);
+            }
+
+
+            div.main-tables{
+                height:570px;
+                width:100%;
+                border:0px solid red; 
+            }
+
+            div.inner-table3 ,div.inner-table4{
+                height:100%;
+                border:0px solid green;
+                float:left;
+            }
+
+            div.inner-table4{
+                float:right;
+            }
+
+            .table3 , .table4{
+                width:600px;   
+            }
+
+            table.table3 caption , table.table4 caption , table.shabihsazi caption{
+                color:#251AB0;
+                font:25px arial;   
+            }
+
+            table.table3 tr:nth-child(odd) , table.table4 tr:nth-child(odd),table.shabihsazi tr:nth-child(odd) {
+            background: #F3F3F3;
+            }
+
+
+            table.table3 tr:nth-child(odd):hover , table.table4 tr:nth-child(odd):hover ,table.shabihsazi tr:nth-child(odd):hover  {
+                background:rgb(7, 0, 0);
+                color:white;
+            }
+
+            table.table3 tr:nth-child(even) , table.table4 tr:nth-child(even),table.shabihsazi tr:nth-child(even) {
+                background: rgb(224, 222, 222);
+            }
+
+
+            table.table3 tr:nth-child(even):hover , table.table4 tr:nth-child(even):hover ,table.shabihsazi tr:nth-child(even):hover  {
+                background:rgb(7, 0, 0);
+                color:white;
+            }
+
+            th{
+                background-color:#21B0EC;
+                color:white;
+                font-size:20px;
+                font-weight:100;  
+            }
+            th:first-child{
+                border-top-left-radius:20px;
+            }
+            th:last-child{
+                border-top-right-radius:20px;
+            }
+
+            div.name{
+                height:20px;
+                width:100%;
+                background-color:red;
+            }
+
+            p{
+                color:#0F92CA;
+                font-size:25px;
+
+            }
+        </style>
+        <script>
+            function myFunction() {
+                // ********************** 3 raghami va takhsise an be table ***********************
+                var rd3_B =[""];       // adade 3 raghamie tasadofi
+                var rd3_S =[""];       // adade ta 8 motenazer ba adade 3 raghamie tasadofi
+                var i;
+                for (i = 1; i < 21; i++)
+                {
+                    
+                    rd3_B[1] = "-";
+                    rd3_S[1] = "-";    
+                    document.getElementById("rd3_B[1]").innerHTML = rd3_B[1];
+                    document.getElementById("rd3_S[1]").innerHTML = rd3_S[1];  
+                    
+                    rd3_B[i] = 000 + Math.floor(Math.random() * 999);
+                    rd3_S[i] = Math.ceil(rd3_B[i]/125) 
+                    
+                    var i1 = "rd3_B[" + i + "]";
+                    var i2 = "rd3_S[" + i + "]";
+                    document.getElementById(i1).innerHTML = rd3_B[i];
+                    document.getElementById(i2).innerHTML = rd3_S[i];
+                     
+                }
+
+                // ********************** 2 raghami va takhsise an be table ***********************
+
+                var rd2_B =[""];       // adade 2 raghamie tasadofi
+                var rd2_S =[""];       // adade ta 6 motenazer ba adade 2 raghamie tasadofi
+                var j;
+                for (j = 1; j < 21; j++)
+                {
+                    rd2_B[j] = 00 + Math.floor(Math.random() * 99);
+                    rd2_S[j] = Math.ceil(rd2_B[j]/16.66) 
+                    
+                    var j1 = "rd2_B[" + j + "]";
+                    var j2 = "rd2_S[" + j + "]";
+                    document.getElementById(j1).innerHTML = rd2_B[j];
+                    document.getElementById(j2).innerHTML = rd2_S[j];
+                }
+
+                var items = [
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""],
+                ["", ""]
+                ];
+
+                k = 1;
+                var i;
+                for (i = 1; i < 21; i++)
+                {
+                    //********************************* soton 1 **********************************
+                    var k1 = "items[" + i + "][1]";
+                    items[i][1] = rd3_S[i];
+                    document.getElementById(k1).innerHTML = items[i][1];
+                    document.getElementById("items[1][1]").innerHTML = "-";
+
+                    //********************************* soton 2 **********************************                    
+                    items[1][2] = 0 ;   
+                    items[2][2] = rd3_S[2];
+                    items[3][2] = items[2][2] + rd3_S[3];
+                    items[4][2] = items[3][2] + rd3_S[4];
+                    items[5][2] = items[4][2] + rd3_S[5];
+                    items[6][2] = items[5][2] + rd3_S[6];
+                    items[7][2] = items[6][2] + rd3_S[7];
+                    items[8][2] = items[7][2] + rd3_S[8];
+                    items[9][2] = items[8][2] + rd3_S[9];
+                    items[10][2] = items[9][2] + rd3_S[10]; 
+                    items[11][2] = items[10][2] + rd3_S[11]; 
+                    items[12][2] = items[11][2] + rd3_S[12]; 
+                    items[13][2] = items[12][2] + rd3_S[13]; 
+                    items[14][2] = items[13][2] + rd3_S[14]; 
+                    items[15][2] = items[14][2] + rd3_S[15]; 
+                    items[16][2] = items[15][2] + rd3_S[16]; 
+                    items[17][2] = items[16][2] + rd3_S[17]; 
+                    items[18][2] = items[17][2] + rd3_S[18]; 
+
+                    var k2 = "items[" + i + "][2]";
+                    document.getElementById(k2).innerHTML = items[i][2];
+
+                    //********************************* soton 3 **********************************
+
+                    var k3 = "items[" + i + "][3]";
+                    items[i][3] = rd2_S[i]
+                    document.getElementById(k3).innerHTML = items[i][3];
+
+                    //********************************* soton 4 *********************** ? ***********
+                    items[1][4] = 0;
+                    document.getElementById("items[1][4]").innerHTML = items[1][4];
+
+                    //********************************* soton 5 *********************** ? ***********
+                    items[1][5] = 0;
+                    document.getElementById("items[1][5]").innerHTML = items[1][5];
+
+                    //********************************* soton 6 *********************** ? ***********
+                    items[1][6] = items[1][3];
+                    document.getElementById("items[1][6]").innerHTML = items[1][6];
+
+                    //********************************* soton 7 *********************** ? ***********
+                    items[1][7] = items[1][3];
+                    document.getElementById("items[1][7]").innerHTML = items[1][7];
+
+
+                    //********************************* soton 8 *********************** ? ***********
+                    items[1][8] = 0;
+                    document.getElementById("items[1][8]").innerHTML = items[1][8];
+
+
+
+                    j = i+1;
+                    if(items[i+1][2] > items[i][6]){
+                        items[i+1][4] = items[i+1][2];
+                        var k4 = "items[" + j + "][4]";
+                        document.getElementById(k4).innerHTML = items[i+1][4];
+
+                        items[i+1][5] = 0;
+                        var k5 = "items[" + j + "][5]";
+                        document.getElementById(k5).innerHTML = items[i+1][5];
+
+                        items[i+1][6] = rd2_S[i+1] + items[i+1][4];     // 3 + 4
+                        var k6 = "items[" + j + "][6]";
+                        document.getElementById(k6).innerHTML = items[i+1][6];
+
+                        items[i+1][7] = rd2_S[i+1] + items[i+1][5];     // 3 + 5
+                        var k7 = "items[" + j + "][7]";
+                        document.getElementById(k7).innerHTML = items[i+1][7];
+                        
+                        items[i+1][8] = items[i+1][2] - items[i][6];     // 2 - 6
+                        var k8 = "items[" + j + "][8]";
+                        document.getElementById(k8).innerHTML = items[i+1][8];
+                    }
+                    if(items[i+1][2] < items[i][6]){
+
+                        items[i+1][4] = items[i][6];
+                        var k4 = "items[" + j + "][4]";
+                        document.getElementById(k4).innerHTML = items[i+1][4];
+                        
+                        items[i+1][5] = items[i][6] - items[i+1][2]  ;
+                        var k5 = "items[" + j + "][5]";
+                        document.getElementById(k5).innerHTML = items[i+1][5];
+
+                        items[i+1][6] = rd2_S[i+1] + items[i+1][4];     // 3 + 4
+                        var k6 = "items[" + j + "][6]";
+                        document.getElementById(k6).innerHTML = items[i+1][6];
+
+                        items[i+1][7] = rd2_S[i+1] + items[i+1][5];     // 3 + 5
+                        var k7 = "items[" + j + "][7]";
+                        document.getElementById(k7).innerHTML = items[i+1][7];
+
+                        items[i+1][8] = 0;     
+                        var k8 = "items[" + j + "][8]";
+                        document.getElementById(k8).innerHTML = items[i+1][8];
+                    }
+
+                    if(items[i+1][2] == items[i][6]){
+                        items[i+1][4] = items[i][6];
+                        var k4 = "items[" + j + "][4]";
+                        document.getElementById(k4).innerHTML = items[i+1][4];
+
+                        items[i+1][5] = 0  ;
+                        var k5 = "items[" + j + "][5]";
+                        document.getElementById(k5).innerHTML = items[i+1][5];
+
+                        items[i+1][6] = rd2_S[i+1] + items[i+1][4];     // 3 + 4
+                        var k6 = "items[" + j + "][6]";
+                        document.getElementById(k6).innerHTML = items[i+1][6];
+
+                        items[i+1][7] = rd2_S[i+1] + items[i+1][5];     // 3 + 5
+                        var k7 = "items[" + j + "][7]";
+                        document.getElementById(k7).innerHTML = items[i+1][7];
+
+                        items[i+1][8] = 0;     
+                        var k8 = "items[" + j + "][8]";
+                        document.getElementById(k8).innerHTML = items[i+1][8];
+                    }
+                }
+           }
+
+        </script>
+    </head>
+    <body>
+            <p>Simulation exersise2 Meisam Dorri Akhavi</p>
+
+
+        <button onclick="myFunction()">Click ME!</button>
+        <BR>
+        <div class="main-tables">
+            <div class="inner-table3">
+                <table class="table3">
+                    <caption>تعیین مدت های بین دو ورود</caption>
+                    <tr>
+                        <th>مدت بین دو ورود</th>
+                        <th>ارقام تصادفی</th> 
+                        <th>مشتری</th>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[1]"></td>
+                        <td id="rd3_B[1]"></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[2]"></td>
+                        <td id="rd3_B[2]"></td>
+                        <td>2</td> 
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[3]"></td>
+                        <td id="rd3_B[3]"></td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[4]"></td>
+                        <td id="rd3_B[4]"></td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[5]"></td>
+                        <td id="rd3_B[5]"></td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[6]"></td>
+                        <td id="rd3_B[6]"></td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[7]"></td>
+                        <td id="rd3_B[7]"></td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[8]"></td>
+                        <td id="rd3_B[8]"></td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[9]"></td>
+                        <td id="rd3_B[9]"></td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[10]"></td>
+                        <td id="rd3_B[10]"></td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[11]"></td>
+                        <td id="rd3_B[11]"></td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[12]"></td>
+                        <td id="rd3_B[12]"></td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[13]"></td>
+                        <td id="rd3_B[13]"></td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[14]"></td>
+                        <td id="rd3_B[14]"></td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[15]"></td>
+                        <td id="rd3_B[15]"></td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[16]"></td>
+                        <td id="rd3_B[16]"></td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[17]"></td>
+                        <td id="rd3_B[17]"></td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[18]"></td>
+                        <td id="rd3_B[18]"></td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[19]"></td>
+                        <td id="rd3_B[19]"></td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td id="rd3_S[20]"></td>
+                        <td id="rd3_B[20]"></td>
+                        <td>20</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="inner-table4">
+                <table class="table4">
+                    <caption>مدت های تولید شده برای خدمت دهی</caption>
+                    <tr>
+                        <th>مدت خدمت دهی</th>
+                        <th>ارقام تصادفی</th> 
+                        <th>مشتری</th>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[1]"></td>
+                        <td id="rd2_B[1]"></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[2]"></td>
+                        <td id="rd2_B[2]"></td>
+                        <td>2</td> 
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[3]"></td>
+                        <td id="rd2_B[3]"></td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[4]"></td>
+                        <td id="rd2_B[4]"></td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[5]"></td>
+                        <td id="rd2_B[5]"></td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[6]"></td>
+                        <td id="rd2_B[6]"></td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[7]"></td>
+                        <td id="rd2_B[7]"></td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[8]"></td>
+                        <td id="rd2_B[8]"></td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[9]"></td>
+                        <td id="rd2_B[9]"></td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[10]"></td>
+                        <td id="rd2_B[10]"></td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[11]"></td>
+                        <td id="rd2_B[11]"></td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[12]"></td>
+                        <td id="rd2_B[12]"></td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[13]"></td>
+                        <td id="rd2_B[13]"></td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[14]"></td>
+                        <td id="rd2_B[14]"></td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[15]"></td>
+                        <td id="rd2_B[15]"></td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[16]"></td>
+                        <td id="rd2_B[16]"></td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[17]"></td>
+                        <td id="rd2_B[17]"></td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[18]"></td>
+                        <td id="rd2_B[18]"></td>
+                        <td>18</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[19]"></td>
+                        <td id="rd2_B[19]"></td>
+                        <td>19</td>
+                    </tr>
+                    <tr>
+                        <td id="rd2_S[20]"></td>
+                        <td id="rd2_B[20]"></td>
+                        <td>20</td>
+                    </tr>
+                </table>
+            </div>            
+        </div>
+           
+
+                <div>
+                <table class="shabihsazi">
+                    <caption>جدول شبیه سازی برای مسئله صف</caption>
+                    <tr>
+                        <th>مدت بیکاری خدمت دهنده (دقیقه)</th>
+                        <th>مدت ماندن مشتری در سیستم (دقیقه)</th>
+                        <th>زمان پایان خدمت</th>
+                        <th>مدت ماندن مشتری در صف (دقیقه)</th>
+                        <th>زمان شروع خدمت</th>
+                        <th>مدت خدمت دهی (دقیقه)</th>
+                        <th>زمان ورود</th>
+                        <th>مدت سپری شده از آخرین ورود (دقیقه)</th>
+                        <th>مشتری</th>
+    
+                    </tr>
+                    <tr>
+                        <td id="items[1][8]"></td>
+                        <td id="items[1][7]"></td>
+                        <td id="items[1][6]"></td>
+                        <td id="items[1][5]"></td>
+                        <td id="items[1][4]"></td>
+                        <td id="items[1][3]"></td>
+                        <td id="items[1][2]"></td>
+                        <td id="items[1][1]"></td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td id="items[2][8]"></td>
+                        <td id="items[2][7]"></td>
+                        <td id="items[2][6]"></td>
+                        <td id="items[2][5]"></td>
+                        <td id="items[2][4]"></td>
+                        <td id="items[2][3]"></td>
+                        <td id="items[2][2]"></td>
+                        <td id="items[2][1]"></td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td id="items[3][8]"></td>
+                        <td id="items[3][7]"></td>
+                        <td id="items[3][6]"></td>
+                        <td id="items[3][5]"></td>
+                        <td id="items[3][4]"></td>
+                        <td id="items[3][3]"></td>
+                        <td id="items[3][2]"></td>
+                        <td id="items[3][1]"></td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td id="items[4][8]"></td>
+                        <td id="items[4][7]"></td>
+                        <td id="items[4][6]"></td>
+                        <td id="items[4][5]"></td>
+                        <td id="items[4][4]"></td>
+                        <td id="items[4][3]"></td>
+                        <td id="items[4][2]"></td>
+                        <td id="items[4][1]"></td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td id="items[5][8]"></td>
+                        <td id="items[5][7]"></td>
+                        <td id="items[5][6]"></td>
+                        <td id="items[5][5]"></td>
+                        <td id="items[5][4]"></td>
+                        <td id="items[5][3]"></td>
+                        <td id="items[5][2]"></td>
+                        <td id="items[5][1]"></td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td id="items[6][8]"></td>
+                        <td id="items[6][7]"></td>
+                        <td id="items[6][6]"></td>
+                        <td id="items[6][5]"></td>
+                        <td id="items[6][4]"></td>
+                        <td id="items[6][3]"></td>
+                        <td id="items[6][2]"></td>
+                        <td id="items[6][1]"></td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td id="items[7][8]"></td>
+                        <td id="items[7][7]"></td>
+                        <td id="items[7][6]"></td>
+                        <td id="items[7][5]"></td>
+                        <td id="items[7][4]"></td>
+                        <td id="items[7][3]"></td>
+                        <td id="items[7][2]"></td>
+                        <td id="items[7][1]"></td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td id="items[8][8]"></td>
+                        <td id="items[8][7]"></td>
+                        <td id="items[8][6]"></td>
+                        <td id="items[8][5]"></td>
+                        <td id="items[8][4]"></td>
+                        <td id="items[8][3]"></td>
+                        <td id="items[8][2]"></td>
+                        <td id="items[8][1]"></td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td id="items[9][8]"></td>
+                        <td id="items[9][7]"></td>
+                        <td id="items[9][6]"></td>
+                        <td id="items[9][5]"></td>
+                        <td id="items[9][4]"></td>
+                        <td id="items[9][3]"></td>
+                        <td id="items[9][2]"></td>
+                        <td id="items[9][1]"></td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td id="items[10][8]"></td>
+                        <td id="items[10][7]"></td>
+                        <td id="items[10][6]"></td>
+                        <td id="items[10][5]"></td>
+                        <td id="items[10][4]"></td>
+                        <td id="items[10][3]"></td>
+                        <td id="items[10][2]"></td>
+                        <td id="items[10][1]"></td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td id="items[11][8]"></td>
+                        <td id="items[11][7]"></td>
+                        <td id="items[11][6]"></td>
+                        <td id="items[11][5]"></td>
+                        <td id="items[11][4]"></td>
+                        <td id="items[11][3]"></td>
+                        <td id="items[11][2]"></td>
+                        <td id="items[11][1]"></td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td id="items[12][8]"></td>
+                        <td id="items[12][7]"></td>
+                        <td id="items[12][6]"></td>
+                        <td id="items[12][5]"></td>
+                        <td id="items[12][4]"></td>
+                        <td id="items[12][3]"></td>
+                        <td id="items[12][2]"></td>
+                        <td id="items[12][1]"></td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td id="items[13][8]"></td>
+                        <td id="items[13][7]"></td>
+                        <td id="items[13][6]"></td>
+                        <td id="items[13][5]"></td>
+                        <td id="items[13][4]"></td>
+                        <td id="items[13][3]"></td>
+                        <td id="items[13][2]"></td>
+                        <td id="items[13][1]"></td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td id="items[14][8]"></td>
+                        <td id="items[14][7]"></td>
+                        <td id="items[14][6]"></td>
+                        <td id="items[14][5]"></td>
+                        <td id="items[14][4]"></td>
+                        <td id="items[14][3]"></td>
+                        <td id="items[14][2]"></td>
+                        <td id="items[14][1]"></td>
+                        <td>14</td>
+                    </tr>
+                    <tr>
+                        <td id="items[15][8]"></td>
+                        <td id="items[15][7]"></td>
+                        <td id="items[15][6]"></td>
+                        <td id="items[15][5]"></td>
+                        <td id="items[15][4]"></td>
+                        <td id="items[15][3]"></td>
+                        <td id="items[15][2]"></td>
+                        <td id="items[15][1]"></td>
+                        <td>15</td>
+                    </tr>
+                    <tr>
+                        <td id="items[16][8]"></td>
+                        <td id="items[16][7]"></td>
+                        <td id="items[16][6]"></td>
+                        <td id="items[16][5]"></td>
+                        <td id="items[16][4]"></td>
+                        <td id="items[16][3]"></td>
+                        <td id="items[16][2]"></td>
+                        <td id="items[16][1]"></td>
+                        <td>16</td>
+                    </tr>
+                    <tr>
+                        <td id="items[17][8]"></td>
+                        <td id="items[17][7]"></td>
+                        <td id="items[17][6]"></td>
+                        <td id="items[17][5]"></td>
+                        <td id="items[17][4]"></td>
+                        <td id="items[17][3]"></td>
+                        <td id="items[17][2]"></td>
+                        <td id="items[17][1]"></td>
+                        <td>17</td>
+                    </tr>
+                    <tr>
+                        <td id="items[18][8]"></td>
+                        <td id="items[18][7]"></td>
+                        <td id="items[18][6]"></td>
+                        <td id="items[18][5]"></td>
+                        <td id="items[18][4]"></td>
+                        <td id="items[18][3]"></td>
+                        <td id="items[18][2]"></td>
+                        <td id="items[18][1]"></td>
+                        <td>18</td>
+                    </tr>
+            </table>
+    </body>
